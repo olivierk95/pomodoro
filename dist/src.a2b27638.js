@@ -24615,20 +24615,26 @@ var Timer = function Timer() {
     className: "timer"
   }, _react.default.createElement("div", {
     className: "timer-time"
-  }, _react.default.createElement("h2", {
-    id: "timer_default"
-  }, "25:00")), _react.default.createElement("div", {
+  }, _react.default.createElement("h2", null, _react.default.createElement("span", {
+    id: "minutes"
+  }, "25"), ":", _react.default.createElement("span", {
+    id: "seconds"
+  }, "00"))), _react.default.createElement("div", {
     className: "timer-buttons"
   }, _react.default.createElement("div", {
     className: "button"
   }, _react.default.createElement("button", {
-    className: "top-corner"
+    className: "top-corner",
+    id: "add"
   }, _react.default.createElement("h3", null, "+"))), _react.default.createElement("div", {
     className: "button"
-  }, _react.default.createElement("button", null, _react.default.createElement("h3", null, "Start"))), _react.default.createElement("div", {
+  }, _react.default.createElement("button", null, _react.default.createElement("h3", {
+    id: "start"
+  }, "Start"))), _react.default.createElement("div", {
     className: "button"
   }, _react.default.createElement("button", {
-    className: "bottom-corner"
+    className: "bottom-corner",
+    id: "remove"
   }, _react.default.createElement("h3", null, "-")))));
 };
 
@@ -24725,7 +24731,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "37267" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "46357" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
