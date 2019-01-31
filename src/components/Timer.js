@@ -14,7 +14,7 @@ const customStyles = {
       transform             : 'translate(-50%, -50%)'
     }
   };
-  
+
 class Timer extends React.Component {
 
     constructor(props) {
@@ -26,8 +26,6 @@ class Timer extends React.Component {
             chosenTime: "",
             modalIsOpen: false,
         }
-        
-        this.openModal = this.openModal.bind(this);
         this.afterOpenModal = this.afterOpenModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
     };
@@ -63,18 +61,22 @@ class Timer extends React.Component {
                     this.setState({
                         seconds: 59,
                         minutes: this.state.minutes -1,
-                    })
+                    });
                 } else if(this.state.minutes>=0 && this.state.seconds>10) {
                     this.setState({
                         seconds: this.state.seconds -1,
-                    })
+                    });
                 } else if (this.state.seconds>0) {
                     this.setState({
                         seconds: this.state.seconds -1,
-                    })
+                    });
+                } else if (this.state.minutes==0 && this.state.seconds==0) {
+                    this.setState({
+                        modalIsOpen: true
+                    });
                 }
             }, 
-            1000);
+            100);
         } else {
             clearInterval(chrono);
             this.setState({
@@ -84,17 +86,17 @@ class Timer extends React.Component {
         }
     };
 
-    openModal() {
-        this.setState({modalIsOpen: true});
-    }
-
     afterOpenModal() {
     // references are now sync'd and can be accessed.
     this.subtitle.style.color = '#f00';
     }
 
     closeModal() {
-    this.setState({modalIsOpen: false});
+        this.setState({
+            modalIsOpen: false,
+            minutes : this.state.chosenTime,
+            seconds : 0,
+        });
     }
 
     render() {
@@ -111,24 +113,7 @@ class Timer extends React.Component {
 
         return (
             <div>
-                <Modal
-                isOpen={this.state.modalIsOpen}
-                onAfterOpen={this.afterOpenModal}
-                onRequestClose={this.closeModal}
-                style={customStyles}
-                contentLabel="Example Modal"
-                >
-                    <h2 ref={subtitle => this.subtitle = subtitle}>Hello</h2>
-                    <button onClick={this.closeModal}>close</button>
-                    <div>I am a modal</div>
-                    <form>
-                        <input />
-                        <button>tab navigation</button>
-                        <button>stays</button>
-                        <button>inside</button>
-                        <button>the modal</button>
-                    </form>
-                </Modal>
+                
                 <div className="timer">
                     <div className="timer-time">
                         <h2>
@@ -163,6 +148,20 @@ class Timer extends React.Component {
                         </div>   
                     </div>
                 </div>
+
+                <Modal
+                isOpen={this.state.modalIsOpen}
+                onAfterOpen={this.afterOpenModal}
+                onRequestClose={this.closeModal}
+                style={customStyles}
+                contentLabel="Example Modal"
+                >
+                    <h2 ref={subtitle => this.subtitle = subtitle}>Good job!</h2>
+                    <button onClick={this.closeModal}>Restart</button>
+                    <button onClick={() => location.reload()}>Discard</button>
+
+                </Modal>
+
             </div>
         )
     }

@@ -26723,7 +26723,6 @@ function (_React$Component) {
       chosenTime: "",
       modalIsOpen: false
     };
-    _this.openModal = _this.openModal.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.afterOpenModal = _this.afterOpenModal.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.closeModal = _this.closeModal.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
@@ -26772,8 +26771,12 @@ function (_React$Component) {
             _this2.setState({
               seconds: _this2.state.seconds - 1
             });
+          } else if (_this2.state.minutes == 0 && _this2.state.seconds == 0) {
+            _this2.setState({
+              modalIsOpen: true
+            });
           }
-        }, 1000);
+        }, 100);
       } else {
         clearInterval(chrono);
         this.setState({
@@ -26781,13 +26784,6 @@ function (_React$Component) {
           seconds: 0
         });
       }
-    }
-  }, {
-    key: "openModal",
-    value: function openModal() {
-      this.setState({
-        modalIsOpen: true
-      });
     }
   }, {
     key: "afterOpenModal",
@@ -26799,7 +26795,9 @@ function (_React$Component) {
     key: "closeModal",
     value: function closeModal() {
       this.setState({
-        modalIsOpen: false
+        modalIsOpen: false,
+        minutes: this.state.chosenTime,
+        seconds: 0
       });
     }
   }, {
@@ -26819,19 +26817,7 @@ function (_React$Component) {
       }
 
       ;
-      return _react.default.createElement("div", null, _react.default.createElement(_reactModal.default, {
-        isOpen: this.state.modalIsOpen,
-        onAfterOpen: this.afterOpenModal,
-        onRequestClose: this.closeModal,
-        style: customStyles,
-        contentLabel: "Example Modal"
-      }, _react.default.createElement("h2", {
-        ref: function ref(subtitle) {
-          return _this3.subtitle = subtitle;
-        }
-      }, "Hello"), _react.default.createElement("button", {
-        onClick: this.closeModal
-      }, "close"), _react.default.createElement("div", null, "I am a modal"), _react.default.createElement("form", null, _react.default.createElement("input", null), _react.default.createElement("button", null, "tab navigation"), _react.default.createElement("button", null, "stays"), _react.default.createElement("button", null, "inside"), _react.default.createElement("button", null, "the modal"))), _react.default.createElement("div", {
+      return _react.default.createElement("div", null, _react.default.createElement("div", {
         className: "timer"
       }, _react.default.createElement("div", {
         className: "timer-time"
@@ -26863,7 +26849,23 @@ function (_React$Component) {
         onClick: function onClick() {
           return _this3.removeMinute();
         }
-      }, _react.default.createElement("h3", null, "-"))))));
+      }, _react.default.createElement("h3", null, "-"))))), _react.default.createElement(_reactModal.default, {
+        isOpen: this.state.modalIsOpen,
+        onAfterOpen: this.afterOpenModal,
+        onRequestClose: this.closeModal,
+        style: customStyles,
+        contentLabel: "Example Modal"
+      }, _react.default.createElement("h2", {
+        ref: function ref(subtitle) {
+          return _this3.subtitle = subtitle;
+        }
+      }, "Good job!"), _react.default.createElement("button", {
+        onClick: this.closeModal
+      }, "Restart"), _react.default.createElement("button", {
+        onClick: function onClick() {
+          return location.reload();
+        }
+      }, "Discard")));
     }
   }]);
 
