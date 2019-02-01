@@ -52,3 +52,14 @@ button:hover {
 button:hover h3 {
     color: #F30023;
 }
+
+.modal-button {
+    width: 30%;
+    border-radius: 30px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.flex {
+    text-align: center;
+}

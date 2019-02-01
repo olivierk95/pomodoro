@@ -26625,13 +26625,14 @@ Modal.defaultStyles = {
     left: "40px",
     right: "40px",
     bottom: "40px",
-    border: "1px solid #ccc",
     background: "#fff",
     overflow: "auto",
     WebkitOverflowScrolling: "touch",
     borderRadius: "4px",
     outline: "none",
-    padding: "20px"
+    padding: "20px",
+    borderRadius: "30px",
+    border: "4px solid #5F007E",
   }
 };
 
@@ -26776,7 +26777,7 @@ function (_React$Component) {
               modalIsOpen: true
             });
           }
-        }, 100);
+        }, 1000);
       } else {
         clearInterval(chrono);
         this.setState({
@@ -26859,13 +26860,17 @@ function (_React$Component) {
         ref: function ref(subtitle) {
           return _this3.subtitle = subtitle;
         }
-      }, "Good job!"), _react.default.createElement("button", {
+      }, "Good job!"), _react.default.createElement("div", {
+        className: "flex"
+      }, _react.default.createElement("button", {
+        className: "modal-button",
         onClick: this.closeModal
-      }, "Restart"), _react.default.createElement("button", {
+      }, _react.default.createElement("h3", null, "Restart")), _react.default.createElement("button", {
+        className: "modal-button",
         onClick: function onClick() {
           return location.reload();
         }
-      }, "Discard")));
+      }, _react.default.createElement("h3", null, "Discard")))));
     }
   }]);
 
@@ -26965,7 +26970,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "35187" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "41451" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

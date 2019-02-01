@@ -76,7 +76,7 @@ class Timer extends React.Component {
                     });
                 }
             }, 
-            100);
+            1000);
         } else {
             clearInterval(chrono);
             this.setState({
@@ -157,8 +157,10 @@ class Timer extends React.Component {
                 contentLabel="Example Modal"
                 >
                     <h2 ref={subtitle => this.subtitle = subtitle}>Good job!</h2>
-                    <button onClick={this.closeModal}>Restart</button>
-                    <button onClick={() => location.reload()}>Discard</button>
+                    <div className="flex">
+                        <button className="modal-button" onClick={this.closeModal}><h3>Restart</h3></button>
+                        <button className="modal-button" onClick={() => location.reload()}><h3>Discard</h3></button>
+                    </div>
 
                 </Modal>
 
